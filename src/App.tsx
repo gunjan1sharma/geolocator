@@ -12,8 +12,12 @@ import FaqList from "./components/FaqList";
 
 function App() {
   const [color, setColor] = useState<string>("");
+  const [point, setPoint] = useState<number>(0);
   const handleColorChange = (color: string) => {
     setColor(color);
+  };
+  const handlePointChange = (p: number) => {
+    setPoint(p);
   };
 
   return (
@@ -23,14 +27,16 @@ function App() {
       <ColorContext.Provider
         value={{
           color: color,
+          point: point,
+          setPoint: handlePointChange,
           setColor: handleColorChange,
         }}
       >
         <SimpleIntro
           tag="FREE TOOL"
-          heading="Capture Website Screenshots"
-          subtitle="Take Screenshot of Any Website"
-          btntext="Take Screenshot"
+          heading="IP To GeoLocation Finder"
+          subtitle="Get Free IP to GeoLocation Data"
+          btntext="Find GeoLocation"
         />
         <Home />
       </ColorContext.Provider>

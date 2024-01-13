@@ -11,6 +11,10 @@ function FeatureIntro(params: FeatureIntroProps) {
       </h1>
       <br />
       <h4 className="text-gray-600 lg:mt-10">{params.desc}</h4>
+      <h4 className="text-gray-800 font-bold mt-5 lg:mt-10">
+        Ready to supercharge your location intelligence? Start exploring for
+        FREE today! ➡️
+      </h4>
       <br />
       <br />
     </div>

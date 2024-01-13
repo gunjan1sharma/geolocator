@@ -4,37 +4,22 @@ import {
   Checkbox,
   CircularProgress,
   Divider,
-  Pagination,
-  Slider,
   TextField,
 } from "@mui/material";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import DownloadImage from "../assets/images/download.png";
-import React, {
-  ChangeEventHandler,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import ReactPlayer from "react-player";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Root } from "../extras/types";
-import SingleComponent from "../components/SingleComponent";
-import ImageComponent from "../components/ImageComponent";
-import { v4 as uuidv4 } from "uuid";
 
 import FeatureIntro from "../components/FeatureIntro";
 import { ColorContext } from "../extras/ColorContext";
 import { Link } from "react-router-dom";
 import ReactJson from "react-json-view";
-
 const regex =
   /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 const BASE_API_IP = "https://api.ipify.org?format=json";
 const BASE_API_URL =
-  "http://192.168.1.88:9999/extras/v1/api/parsing/ip-to-geolocation?ip=";
+  "https://appnor-backend.onrender.com/extras/v1/api/parsing/ip-to-geolocation?ip=";
 
 const sampleResponse = {
   domain: "geekyants.com",
@@ -117,9 +102,8 @@ function HomePage(props: any) {
 
   useEffect(() => {
     scrollToDiv();
-    getDefaultIPAddress();
     return () => {};
-  }, [colorContex.color]);
+  }, [colorContex.point]);
 
   const handleClose = () => {
     setOpen(false);
@@ -177,13 +161,7 @@ function HomePage(props: any) {
       alert("Please Agree with our Terms & Condition before procedding..");
       return;
     }
-
-    if (ipAddress === "" || !ipAddress.startsWith("https://www")) {
-      alert("A Valid Website URL[https://www] is Required!!");
-      return;
-    }
-
-    window.open(ipAddress, "_blank");
+    window.open("https://myip-address.netlify.app/", "_blank");
   }
 
   function handleChange(
@@ -197,7 +175,10 @@ function HomePage(props: any) {
   }
 
   function scrollToDiv() {
-    scrollRef.current.scrollIntoView();
+    if (colorContex.point !== 0) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+      colorContex.setPoint(0);
+    }
   }
 
   function flattenResponse(response: Root): [string, any][] {
@@ -251,8 +232,8 @@ function HomePage(props: any) {
     >
       {backdrop}
       <FeatureIntro
-        heading="Only screenshot capturer tool you need"
-        desc="Ditch generic keywords and discover powerful, untapped gems with our advanced scraper. Say goodbye to endless brainstorming and hello to targeted content that dominates search engines. No more tedious manual research. Automate your keyword discovery, freeing up your time for crafting content that truly shines."
+        heading="Unleash the Power of Location with Our FREE IP Lookup Tool!⚡"
+        desc="Tired of struggling with expensive geo-targeting tools?  Say goodbye to hidden fees and embrace the power of precise location data, completely FREE! Simply enter any IP address and watch our lightning-fast tool unlock a treasure trove of insights. Boost your marketing campaigns, personalize user experiences, and gain crucial intel on your audience – all without breaking the bank!"
       />
       <div className="flex flex-col items-center border border-gray-400 shadow-lg p-4">
         <TextField
@@ -261,7 +242,7 @@ function HomePage(props: any) {
           value={ipAddress}
           onChange={handleChange}
           id="url-input"
-          label="Enter Website Link To Capture"
+          label="Enter Valid IP Address"
           variant="outlined"
         />
 
@@ -270,24 +251,24 @@ function HomePage(props: any) {
           sx={{ marginTop: "20px", marginBottom: "10px", width: "200px" }}
           variant="contained"
         >
-          Take Screenshot
+          Find GeoLocation
         </Button>
         <Button
           onClick={visitWebsite}
           sx={{ width: "200px", marginTop: "10px", marginBottom: "15px" }}
           variant="outlined"
         >
-          Visit Website
+          Get IP Address
         </Button>
         <h3 className="text-xs text-center w-80 m-2">
-          A direct list of result will get triggered if file has only one format
-          else a list of downloadable file will get presented.
+          You agree to use this tool for legitimate purposes only, respecting
+          user privacy and avoiding misuse of location data.
         </h3>
         <div className="flex items-center justify-center">
           <Checkbox onChange={(e) => handleCheckboxChange(e.target.checked)} />
-          <h3 className="text-xs text-center m-2">
-            By capturing screenshot of 3rd party websites you agree to our terms
-            & conditions for fair usages policy
+          <h3 className="text-xs text-center">
+            We provide the data "as is" with no guarantees of accuracy or
+            completeness.
           </h3>
         </div>
         <Divider color="black" />
@@ -298,7 +279,9 @@ function HomePage(props: any) {
       {isDownloadSuccess && (
         <div className="border-2 text-center border-blue-500 shadow-sm p-4 mb-8">
           <div className="flex flex-col items-center md:flex-row font-mono mb-5 justify-center">
-            <h3 className="font-bold text-xl">Whois Lookup Successful</h3>
+            <h3 className="font-bold text-xl">
+              GeoLocation Findings Successful
+            </h3>
             <img
               className="m-2"
               width="30px"
@@ -320,7 +303,7 @@ function HomePage(props: any) {
       {isDownloadSuccess && (
         <div className="w-screen">
           <ReactJson
-            style={{ overflowX: "scroll" }}
+            style={{ overflowX: "scroll", paddingRight: "10px" }}
             src={audioResponse}
             enableClipboard={true}
             displayObjectSize={true}

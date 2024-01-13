@@ -15,7 +15,6 @@ import {
   InputAdornment,
   InputBaseClasses,
   InputLabel,
-  Link,
   List,
   Menu,
   MenuItem,
@@ -24,10 +23,11 @@ import {
   Typography,
 } from "@mui/material";
 import ColorImage from "../assets/images/colour.png";
-import LogoImage from "../assets/images/screenshot.png";
+import LogoImage from "../assets/images/geolocation.png";
 import { ColorContext } from "../extras/ColorContext";
 import MenuIcon from "@mui/icons-material/Menu";
 import SingleColor from "./SingleColor";
+import { Link } from "react-router-dom";
 
 const Wrapper = `
   position: fixed;
@@ -226,12 +226,14 @@ function UpMenu(props: any) {
 
         <div className="flex items-center justify-center">
           <img alt="" src={LogoImage} className="w-10 h-10 md:w-14 md:h-14" />
-          <h1
-            //style={{ color: headingColor }}
-            className="p-5 text-center text-blue-600 font-bold text-xl sm:text-4xl"
-          >
-            Siteshot
-          </h1>
+          <Link to="https://geolocationq.web.app">
+            <h1
+              style={{ color: "#00C3FF" }}
+              className="p-5 text-center font-bold text-xl sm:text-4xl"
+            >
+              IP To GeoLocation
+            </h1>
+          </Link>
         </div>
 
         <div></div>

@@ -9,28 +9,33 @@ function FaqList(props: any) {
         style={{ borderBottomWidth: "1px", borderBottomColor: "lightgray" }}
       />
       <FaqComponent
-        faq="What kind of websites can I analyze with your tool?"
-        answer="Our tool can extract keywords from virtually any publicly accessible website, regardless of its content or structure."
+        faq="What kind of data can I get with your tool?"
+        answer="We unlock a treasure trove of 40+ data points for any IP address you enter, including:
+Location: Country, region, city, zip code, latitude/longitude
+Time & Currency: Time zone, local currency
+Network Details: ISP name, network classification
+Technical Data: ASN, organization name, IP type
+And more!"
       />
       <FaqComponent
-        faq="How many keywords will your tool extract from a website?"
-        answer="The number of extracted keywords depends on the website's length and content richness. You'll typically see a list of the most relevant and frequently used keywords."
+        faq="Is your data accurate and reliable?"
+        answer="We prioritize accuracy and rely on reputable sources and frequent updates to ensure the highest quality data possible. However, there might be occasional discrepancies due to dynamic nature of IP geolocation."
       />
       <FaqComponent
-        faq="How accurate is your keyword extraction process?"
-        answer="We utilize advanced algorithms to accurately identify and prioritize keywords based on their relevance and prominence within the website's content."
+        faq="How much does it cost to use your tool?"
+        answer="It's completely FREE to utilize our basic IP lookup features with 40+ data points. We also offer affordable paid plans with extra features for high-volume users."
       />
       <FaqComponent
-        faq="Can I filter the extracted keywords in any way?"
-        answer="Yes, you can filter keywords based on factors like word count, frequency, or specific phrases to refine your results and focus on the most relevant terms"
+        faq="Are there any limitations to free usage?"
+        answer="We encourage responsible use, and for a seamless experience, might occasionally set limits on free daily or monthly queries. Contact us if you have specific needs exceeding these limits."
       />
       <FaqComponent
-        faq="Can I export the extracted keywords for further analysis?"
-        answer="Absolutely! You can easily export the keyword list in various formats, such as CSV or Excel, for integration into your preferred SEO tools or content strategies"
+        faq=" Is my data safe and secure?"
+        answer="We take data privacy seriously. Your IP addresses and any personal information are never stored or shared."
       />
       <FaqComponent
-        faq="Does your tool have any limitations in terms of website size or complexity?"
-        answer="We've designed our tool to handle even large and complex websites efficiently. However, if you encounter any issues, please don't hesitate to contact our support team."
+        faq="What types of businesses can benefit from your tool?"
+        answer="Marketers: Precise audience targeting for advertising and campaigns. E-commerce: Personalized user experiences based on location data. Security & Fraud Prevention: Identify suspicious activity from specific regions. Logistics & Delivery: Optimize delivery routes and improve efficiency."
       />
     </div>
   );
